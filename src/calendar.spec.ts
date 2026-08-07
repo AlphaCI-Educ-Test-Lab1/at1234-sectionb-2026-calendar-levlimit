@@ -1,4 +1,4 @@
-import { isLeapYear } from './calendar';
+import { daysInMonth, isLeapYear } from './calendar';
 
 describe('isLeapYear', () => {
   it('is false for an ordinary year', () => {
@@ -18,10 +18,23 @@ describe('isLeapYear', () => {
   });
 });
 
-// Pending until you implement daysInMonth().
-it.skip('gives 31 for January', () => {});
-it.skip('gives 30 for April', () => {});
-it.skip('gives 28 for February in an ordinary year', () => {});
-it.skip('gives 29 for February in a leap year', () => {});
-it.skip('rejects a month below 1', () => {});
-it.skip('rejects a month above 12', () => {});
+describe('daysInMonth', () => {
+  it('gives 31 for January', () => {
+    expect(daysInMonth(2024, 1)).toBe(31);
+  });
+
+  it('gives 30 for April', () => {
+    expect(daysInMonth(2024, 4)).toBe(30);
+  });
+
+  it('gives 28 for February in an ordinary year', () => {
+    expect(daysInMonth(2023, 2)).toBe(28);
+  });
+
+  // Still pending: daysInMonth() is the table lookup only, so these three
+  // describe behaviour it does not have yet. Leap-year February returns 28,
+  // and an out-of-range month returns undefined instead of throwing.
+  it.skip('gives 29 for February in a leap year', () => {});
+  it.skip('rejects a month below 1', () => {});
+  it.skip('rejects a month above 12', () => {});
+});
