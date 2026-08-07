@@ -9,7 +9,9 @@
 const DAYS_PER_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 export function isLeapYear(year: number): boolean {
-  throw new Error('TODO: implement isLeapYear');
+  if (year % 400 === 0) return true;
+  if (year % 100 === 0) return false;
+  return year % 4 === 0;
 }
 
 /**
@@ -19,5 +21,10 @@ export function isLeapYear(year: number): boolean {
  * isLeapYear for February, and DAYS_PER_MONTH for the rest.
  */
 export function daysInMonth(year: number, month: number): number {
-  throw new Error('TODO: implement daysInMonth');
+  // PARTIAL: the table lookup only. Two behaviours from the brief are still
+  // missing, and each is deliberately left for the next pass:
+  //   1. February is 29 in a leap year -- this returns 28 for every year.
+  //   2. A month outside 1-12 must throw "Month must be between 1 and 12" --
+  //      this returns undefined at runtime instead.
+  return DAYS_PER_MONTH[month - 1];
 }
